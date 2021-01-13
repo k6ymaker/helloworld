@@ -1,0 +1,17 @@
+syntax = "proto3";
+//命名空间
+package helloworld;
+
+service SayHi {
+    rpc Hello (Request) returns (Response) {
+
+    }
+}
+
+message Request {
+    string name = 1;
+}
+
+message Response {
+    string code = 5;
+}
