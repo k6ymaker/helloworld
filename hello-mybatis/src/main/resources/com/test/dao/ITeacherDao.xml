@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.ITeacherDao"><!--namespace是对应dao interface-->
+
+    <resultMap type="com.test.data.Teacher" id="teacherResultMap">
+        <id property="id" column="TEACHER_ID"/>
+        <result property="name" column="TEACHER_NAME"/>
+        <result property="sex" column="TEACHER_SEX"/>
+        <result property="birthday" column="TEACHER_BIRTHDAY"/>
+        <result property="workDate" column="WORK_DATE"/>
+        <result property="professional" column="PROFESSIONAL"/>
+    </resultMap>
+
+    <!-- 查询学生，根据id -->
+    <select id="getTeacherById" parameterType="INT" resultType="com.test.data.Teacher" resultMap="teacherResultMap">
+        <![CDATA[
+        SELECT * from STUDENT_MANAGER.TEACHER_TBL TT
+        WHERE TT.TEACHER_ID = #{id}
+        ]]>
+    </select>
+</mapper>

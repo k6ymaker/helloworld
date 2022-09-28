@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dao.IClassDao"><!--namespace是对应dao interface-->
+
+    <resultMap type="com.test.data.Class" id="classResultMap">
+        <id property="id" column="CLASS_ID"/>
+        <result property="name" column="CLASS_NAME"/>
+        <result property="year" column="CLASS_YEAR"/>
+        <association property="teacher" column="TEACHER_ID" select="com.test.dao.ITeacherDao.getTeacherById" />
+        <collection property="studentList" column="CLASS_ID" javaType="ArrayList" ofType="Student" select="com.test.dao.IStudentDao.getStudentByClassId"/>
+    </resultMap>
+
+
+    <select id="getClassById" parameterType="INT" resultType="com.test.data.Class" resultMap="classResultMap">
+        <![CDATA[
+        SELECT * from STUDENT_MANAGER.CLASS_TBL CT
+        WHERE CT.CLASS_ID = #{id}
+        ]]>
+    </select>
+
+<!--    <select id="getClassAndTeacher" parameterType="INT" resultType="com.test.data.Class" resultMap="classResultMap">-->
+<!--        SELECT *-->
+<!--        FROM CLASS_TBL CT LEFT JOIN TEACHER_TBL TT ON CT.TEACHER_ID = TT.TEACHER_ID-->
+<!--        WHERE CT.CLASS_ID = #{classID};-->
+<!--    </select>-->
+</mapper>
