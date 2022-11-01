@@ -34,6 +34,14 @@ public class TestTeacherDao {
         System.out.println(teacher);
     }
 
+    @Test
+    public void updateSex(){
+        ITeacherDao iTeacherDao = sqlSession.getMapper(ITeacherDao.class);
+        Teacher teacher = iTeacherDao.getTeacherById(1);
+        teacher.setSex("female");
+        iTeacherDao.updateSex(teacher);
+    }
+
     @After
     public void destory() throws Exception{
         sqlSession.commit();

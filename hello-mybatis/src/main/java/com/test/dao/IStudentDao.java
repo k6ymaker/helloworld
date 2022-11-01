@@ -8,4 +8,6 @@ public interface IStudentDao {
     public Student getStudentById(int id);
 
     public List<Student> getStudentByClassId(int id);
+
+    public void insert(Student student);
 }

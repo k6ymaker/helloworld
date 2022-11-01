@@ -5,4 +5,6 @@ import com.test.data.Teacher;
 
 public interface ITeacherDao {
     public Teacher getTeacherById(int id);
+
+    public void updateSex(Teacher teacher);
 }

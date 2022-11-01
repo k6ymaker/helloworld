@@ -1,5 +1,7 @@
 package com.test.dao;
 
+import com.test.data.Hobby;
+import com.test.data.Sex;
 import com.test.data.Student;
 import com.test.data.Teacher;
 import org.apache.ibatis.io.Resources;
@@ -16,6 +18,7 @@ import java.util.List;
 public class TestStudentDao {
     private InputStream in;
     private SqlSession sqlSession;
+    private IStudentDao iStudentDao;
 
 
     @Before
@@ -27,18 +30,32 @@ public class TestStudentDao {
         SqlSessionFactory factory = builder.build(in);
         //3.使用工厂生产SqlSession对象
         sqlSession = factory.openSession();
+        iStudentDao = sqlSession.getMapper(IStudentDao.class);
     }
 
     @Test
     public void test(){
-        IStudentDao iStudentDao = sqlSession.getMapper(IStudentDao.class);
-//        Student student = iStudentDao.getStudentById(1);
-//        System.out.println(student);
-        List<Student> studentList = iStudentDao.getStudentByClassId(1);
-        for(Student s:studentList){
-            System.out.println(s);
-        }
+        Student student = iStudentDao.getStudentById(3);
+        System.out.println(student);
     }
+
+    @Test
+    public void insert(){
+//        int id;
+//        String name;
+//        Sex sex;
+//        String birthday;
+//        int classId;
+        iStudentDao.insert(new Student(
+                "zhang",
+                Sex.Male,
+                "1996",
+                1,
+                new Hobby("羽毛球")
+        ));
+    }
+
+
 
     @After
     public void destory() throws Exception{

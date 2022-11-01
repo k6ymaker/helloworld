@@ -3,9 +3,32 @@ package com.test.data;
 public class Student {
     int id;
     String name;
-    String sex;
+    Sex sex;
     String birthday;
     int classId;
+    Hobby hobby;
+
+    public Student(){
+        this.hobby = new Hobby("");
+    }
+
+    public Student(String name, Sex sex, String birthday, int classId, Hobby hobby) {
+        this.name = name;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.classId = classId;
+        this.hobby = hobby;
+    }
+
+
+
+    public Hobby getHobby() {
+        return hobby;
+    }
+
+    public void setHobby(Hobby hobby) {
+        this.hobby = hobby;
+    }
 
     public int getId() {
         return id;
@@ -23,11 +46,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -52,9 +75,10 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
+                ", sex=" + sex +
                 ", birthday='" + birthday + '\'' +
                 ", classId=" + classId +
+                ", hobby=" + hobby +
                 '}';
     }
 }

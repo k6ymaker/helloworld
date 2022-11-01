@@ -7,6 +7,7 @@
         <result property="name" column="STUDENT_NAME"/>
         <result property="sex" column="STUDENT_SEX"/>
         <result property="birthday" column="STUDENT_BIRTHDAY"/>
+        <result property="hobby.name" column="STUDENT_HOBBY"/>
         <result property="classId" column="CLASS_ID"/>
     </resultMap>
 
@@ -24,4 +25,20 @@
         WHERE ST.CLASS_ID = #{id}
         ]]>
     </select>
+
+    <insert id="insert" parameterType="com.test.data.Student">
+        INSERT INTO STUDENT_MANAGER.STUDENT_TBL (
+            STUDENT_NAME,
+            STUDENT_SEX,
+            STUDENT_BIRTHDAY,
+            STUDENT_HOBBY,
+            CLASS_ID)
+        VALUES (
+                #{name},
+                #{sex},
+                #{birthday},
+                #{hobby.name},
+                #{classId}
+               )
+    </insert>
 </mapper>

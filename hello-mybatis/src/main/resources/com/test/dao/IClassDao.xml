@@ -18,9 +18,9 @@
         ]]>
     </select>
 
-<!--    <select id="getClassAndTeacher" parameterType="INT" resultType="com.test.data.Class" resultMap="classResultMap">-->
-<!--        SELECT *-->
-<!--        FROM CLASS_TBL CT LEFT JOIN TEACHER_TBL TT ON CT.TEACHER_ID = TT.TEACHER_ID-->
-<!--        WHERE CT.CLASS_ID = #{classID};-->
-<!--    </select>-->
+    <select id="getClassAndTeacher" parameterType="INT" resultType="com.test.data.Class" resultMap="classResultMap">
+        SELECT *
+        FROM CLASS_TBL CT LEFT JOIN TEACHER_TBL TT ON CT.TEACHER_ID = TT.TEACHER_ID
+        WHERE CT.CLASS_ID = #{classID};
+    </select>
 </mapper>

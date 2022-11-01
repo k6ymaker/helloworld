@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS STUDENT_TBL
     STUDENT_NAME       VARCHAR(10) NOT NULL,
     STUDENT_SEX        VARCHAR(10),
     STUDENT_BIRTHDAY   VARCHAR(10),
+    STUDENT_HOBBY      VARCHAR(10),
     CLASS_ID           int
 );
 
@@ -45,6 +46,8 @@ VALUES ('wang',
         'cs'
        );
 
+
+
 INSERT INTO CLASS_TBL (CLASS_NAME,
                        CLASS_YEAR,
                        TEACHER_ID)
@@ -63,6 +66,20 @@ INSERT INTO STUDENT_TBL (
 VALUES (
            'yujiang',
            'female',
+           '2000',
+           1
+       );
+
+INSERT INTO STUDENT_TBL (
+    STUDENT_NAME,
+    STUDENT_SEX,
+    STUDENT_BIRTHDAY,
+    CLASS_ID
+)
+
+VALUES (
+           'zhang',
+           'male',
            '2000',
            1
        );

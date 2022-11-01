@@ -18,4 +18,10 @@
         WHERE TT.TEACHER_ID = #{id}
         ]]>
     </select>
+
+    <update id="updateSex" parameterType="com.test.data.Teacher">
+        UPDATE STUDENT_MANAGER.TEACHER_TBL TBL
+            SET TBL.TEACHER_SEX = #{sex}
+        WHERE TBL.TEACHER_ID = #{id};
+    </update>
 </mapper>
