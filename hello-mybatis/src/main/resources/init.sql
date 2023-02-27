@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS STUDENT_TBL
     STUDENT_SEX        VARCHAR(10),
     STUDENT_BIRTHDAY   VARCHAR(10),
     STUDENT_HOBBY      VARCHAR(10),
-    CLASS_ID           int
+    CLASS_ID           int,
+    CREATE_TIME        datetime
 );
 
 /***** 建立teacher表 *****/
@@ -60,14 +61,17 @@ INSERT INTO STUDENT_TBL (
     STUDENT_NAME,
     STUDENT_SEX,
     STUDENT_BIRTHDAY,
-    CLASS_ID
+    CLASS_ID,
+    CREATE_TIME
 )
 
+
 VALUES (
-           'yujiang',
-           'female',
+           'yujiang12',
+           'Female',
            '2000',
-           1
+           1,
+           '2013-01-11 11:11:11'
        );
 
 INSERT INTO STUDENT_TBL (

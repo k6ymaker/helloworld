@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 public class TestStudentDao {
@@ -35,7 +36,7 @@ public class TestStudentDao {
 
     @Test
     public void test(){
-        Student student = iStudentDao.getStudentById(3);
+        Student student = iStudentDao.getStudentById(9);
         System.out.println(student);
     }
 
@@ -46,16 +47,41 @@ public class TestStudentDao {
 //        Sex sex;
 //        String birthday;
 //        int classId;
-        iStudentDao.insert(new Student(
-                "zhang",
+
+        Student s = new Student(
+                "xiyangyang",
                 Sex.Male,
                 "1996",
                 1,
-                new Hobby("羽毛球")
-        ));
+                new Hobby("羽毛球"),
+                new Date()
+        );
+
+        System.out.println(s.getId());
+        iStudentDao.insert(s);
+        System.out.println(s.getId());
+
     }
 
+    @Test
+    public void getAll(){
+        List<Student> students = iStudentDao.getAll();
+        students.forEach(System.out::println);
+    }
 
+    @Test
+    public void deleteById(){
+        iStudentDao.deleteById(3);
+    }
+
+    @Test
+    public void updateBirthday(){
+        Student student = new Student();
+        student.setId(4);
+        student.setBirthday("2000");
+
+        iStudentDao.updateBirthday(student);
+    }
 
     @After
     public void destory() throws Exception{

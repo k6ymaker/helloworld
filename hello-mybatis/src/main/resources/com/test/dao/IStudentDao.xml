@@ -9,6 +9,7 @@
         <result property="birthday" column="STUDENT_BIRTHDAY"/>
         <result property="hobby.name" column="STUDENT_HOBBY"/>
         <result property="classId" column="CLASS_ID"/>
+        <result property="createTime" column="CREATE_TIME" javaType="java.util.Date" jdbcType="TIMESTAMP"/><!--jdbcType=DATE jdbcType=TIMESTAMP-->
     </resultMap>
 
     <!-- 查询学生，根据id -->
@@ -26,19 +27,36 @@
         ]]>
     </select>
 
-    <insert id="insert" parameterType="com.test.data.Student">
+
+    <insert id="insert" parameterType="com.test.data.Student" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO STUDENT_MANAGER.STUDENT_TBL (
             STUDENT_NAME,
             STUDENT_SEX,
             STUDENT_BIRTHDAY,
             STUDENT_HOBBY,
-            CLASS_ID)
+            CLASS_ID,
+            CREATE_TIME)
         VALUES (
                 #{name},
                 #{sex},
                 #{birthday},
                 #{hobby.name},
-                #{classId}
+                #{classId},
+                #{createTime}
                )
     </insert>
+
+    <select id="getAll" resultMap="studentResultMap">
+        select * from STUDENT_MANAGER.STUDENT_TBL;
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        delete from STUDENT_MANAGER.STUDENT_TBL where STUDENT_ID=#{id};
+    </delete>
+
+    <update id="updateBirthday" parameterType="com.test.data.Student">
+        update STUDENT_MANAGER.STUDENT_TBL
+        set STUDENT_BIRTHDAY=#{birthday}
+        where STUDENT_ID=#{id}
+    </update>
 </mapper>

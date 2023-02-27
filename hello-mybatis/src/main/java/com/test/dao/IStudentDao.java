@@ -10,4 +10,12 @@ public interface IStudentDao {
     public List<Student> getStudentByClassId(int id);
 
     public void insert(Student student);
+
+    public List<Student> getAll();
+
+    public void deleteById(int id);
+
+    public void updateBirthday(Student student);
+
+    //public List<Student> getStudentCreateBefore();
 }

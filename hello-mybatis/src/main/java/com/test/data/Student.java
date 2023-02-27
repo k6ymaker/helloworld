@@ -1,5 +1,7 @@
 package com.test.data;
 
+import java.util.Date;
+
 public class Student {
     int id;
     String name;
@@ -7,20 +9,28 @@ public class Student {
     String birthday;
     int classId;
     Hobby hobby;
+    Date createTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public Student(){
         this.hobby = new Hobby("");
     }
 
-    public Student(String name, Sex sex, String birthday, int classId, Hobby hobby) {
+    public Student(String name, Sex sex, String birthday, int classId, Hobby hobby, Date createTime) {
         this.name = name;
         this.sex = sex;
         this.birthday = birthday;
         this.classId = classId;
         this.hobby = hobby;
+        this.createTime = createTime;
     }
-
-
 
     public Hobby getHobby() {
         return hobby;
@@ -79,6 +89,7 @@ public class Student {
                 ", birthday='" + birthday + '\'' +
                 ", classId=" + classId +
                 ", hobby=" + hobby +
+                ", createTime=" + createTime +
                 '}';
     }
 }
