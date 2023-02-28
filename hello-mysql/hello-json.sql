@@ -25,26 +25,3 @@ SELECT id,category->'$.id',category->'$.name',tags->'$[0]',tags->'$[2]' FROM mus
 SELECT id,category->'$.name',JSON_UNQUOTE(category->'$.name'),category->>'$.name',tags->'$[0]',tags->'$[2]' FROM muscleape;
 
 SELECT * FROM muscleape WHERE category = CAST('{"id": 1,"name": "muscleape"}' AS JSON);
-
-
-#时间相关
-create database timetest;
-
-create table person_data(
-    name        varchar(20);
-    create_time  datetime;
-);
-
-insert into person_data (
-    name,       
-    create_time
-) values(
-    'xiyangyang',
-    '2013-01-11 11:11:11'
-)
-
-
-select * 
-from person_data 
-where create_time < DATE_FORMAT('2013-01-11 11:11:10','%Y-%m-%d %H:%i:%S');
-
