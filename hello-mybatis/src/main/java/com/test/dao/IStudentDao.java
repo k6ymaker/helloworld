@@ -9,7 +9,7 @@ public interface IStudentDao {
 
     public List<Student> getStudentByClassId(int id);
 
-    public void insert(Student student);
+    public void insert(Student student) throws Exception;
 
     public List<Student> getAll();
 

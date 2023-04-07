@@ -49,7 +49,7 @@ public class TestStudentDao {
 //        int classId;
 
         Student s = new Student(
-                "xiyangyang",
+                "xiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyangxiyangyang",
                 Sex.Male,
                 "1996",
                 1,
@@ -58,7 +58,11 @@ public class TestStudentDao {
         );
 
         System.out.println(s.getId());
-        iStudentDao.insert(s);
+        try{
+            iStudentDao.insert(s);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         System.out.println(s.getId());
 
     }
@@ -83,8 +87,10 @@ public class TestStudentDao {
         iStudentDao.updateBirthday(student);
     }
 
+
+
     @After
-    public void destory() throws Exception{
+    public void destroy() throws Exception{
         sqlSession.commit();
         //6.释放资源
         sqlSession.close();

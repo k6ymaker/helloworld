@@ -4,14 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+<!-- 语句执行超时   values单位s
+    <settings>
+        <setting name="defaultStatementTimeout" value="2"/>
+    </settings> -->
+
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC"></transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/STUDENT_MANAGER?useSSL=false"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/STUDENT_MANAGER?useSSL=false&amp;autoReconnect=true"/>
                 <property name="username" value="root"/>
                 <property name="password" value="password"/>
+                <property name="poolPingEnabled" value="true"/><!--开启mybatis的poolping功能-->
+                <property name="poolPingQuery" value="select 1"/><!--select 1其实是定期执行的sql-->
+                <property name="poolPingConnectionsNotUsedFor" value="3600000"/><!--表示无数据库操作3600000ms（1h）执行一次poolping-->
             </dataSource>
         </environment>
     </environments>
