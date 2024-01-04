@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/23334989/jaxb-different-elements-in-list
