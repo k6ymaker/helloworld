@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+    <!--数据库配置信息-->
+    <dataSource>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        <version>123</version>
+    </dataSource>
+</configuration>
