@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="10000">
+    <contextName>agent</contextName>
+
+    <!-- Console日志 -->
+<!--    <appender name="STDOUT" class="com.test.third-party.ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%t] %c{1.}.%M\(%L\): %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+    <!-- class前缀需和${rasp-shade-prefix}保持一致,即com.vaccine.log4j.third-party -->
+    <contextListener class="com.test.LoggerStartupListener"/>
+
+    <!-- INFO日志 -->
+    <appender name="INFO" class="com.test.third-party.ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/hello-javaagent-info.log</file>
+        <rollingPolicy class="com.test.third-party.ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/hello-javaagent-info-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%t] %c{1.}.%M\(%L\): %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="com.test.third-party.ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- ERROR日志 -->
+    <appender name="ERROR"
+              class="com.test.third-party.ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/hello-javaagent-error.log</file>
+        <rollingPolicy class="com.test.third-party.ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_DIR}/hello-javaagent-error-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level[%t] %c{1.}.%M\(%L\): %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="com.test.third-party.ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- loggers -->
+    <logger name="com.test" level="${log.level:-INFO}" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="INFO"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+</configuration>
+
