@@ -1,0 +1,4 @@
+    no exists hello
+
+
+    hello_array exists and size not eq 0
