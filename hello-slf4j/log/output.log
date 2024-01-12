@@ -1,0 +1,9 @@
+10:54:02.060 [main] INFO  com.test.Test - test 123
+11:20:27.067 [main] INFO  com.test.Test - test 123
+11:29:40.335 [main] INFO  com.test.Test - test 123
+Test.java 18:04:34.643 [main] INFO  com.test.Test - test 123
+Test.java 10 18:05:02.546 [main] INFO  com.test.Test - test 123
+Test.java line:10 18:05:28.213 [main] INFO  com.test.Test - test 123
+ExceptionTest.java line:16 19:41:17.381 [main] ERROR com.test.ExceptionTest - / by zero
+ExceptionTest.java line:16 19:46:47.218 [main] ERROR com.test.ExceptionTest - java.lang.ArithmeticException: / by zero
+ExceptionTest.java line:16 19:47:02.949 [main] ERROR com.test.ExceptionTest - / by zero
