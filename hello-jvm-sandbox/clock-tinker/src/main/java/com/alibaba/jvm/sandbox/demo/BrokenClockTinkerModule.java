@@ -22,9 +22,10 @@ public class BrokenClockTinkerModule implements Module {
 
     @Command("repairCheckState")
     public void repairCheckState() {
-
-        new EventWatchBuilder(moduleEventWatcher)
-                .onClass("com.taobao.demo.Clock")
+    //TODO 怎么通过注解拿到
+    //TODO 1.注解是怎么实现的
+        new EventWatchBuilder(moduleEventWatcher).
+                 onClass("")
                 .onBehavior("checkState")
                 .onWatch(new AdviceListener() {
 
@@ -40,7 +41,6 @@ public class BrokenClockTinkerModule implements Module {
                         ProcessController.returnImmediately(null);
                     }
                 });
-
     }
 
 }
