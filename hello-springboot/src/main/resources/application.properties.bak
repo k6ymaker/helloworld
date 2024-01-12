@@ -1,0 +1,4 @@
+#application.(properties|yml|yaml) 三种配置作用等价
+# 加载优先级 properties > yml > yaml，先加载变量不会被后加载的覆盖
+
+#server.port=8899

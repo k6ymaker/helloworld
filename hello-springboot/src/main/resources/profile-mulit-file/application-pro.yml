@@ -1,0 +1,34 @@
+server:
+  port: 8822
+
+# 对象
+person:
+  name: zhangsan
+  age: 20
+  address:
+    - beijing
+    - shanghai
+
+
+
+##行内写法
+person2: {name: zhangsan,age: 20}
+
+# 数组
+address:
+  - beijing
+  - shanghai
+
+## 行内写法
+address2: [beijing,shanghai]
+
+# 纯量
+msg1: 'hello \n world' # 不识别转义字符，会原样输出
+msg2: "hello \n world" # 会识别转移字符
+
+# 参数引用
+name: lisi
+age: 10
+
+person1:
+  name: ${name}
