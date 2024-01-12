@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- log4j2 配置文件 -->
 <!-- 日志级别 trace<debug<info<warn<error<fatal -->
-<configuration status="info">
+<configuration status="INFO">
     <!-- 自定义属性 -->
     <Properties>
         <!-- 日志格式(控制台) -->
@@ -12,6 +12,7 @@
         </Property>
         <!-- 日志文件路径 -->
         <Property name="filePath">logs/myLog.log</Property>
+        <Property name="kafkaPattern">sec_sast_interapp_temp-%d{yyyyMMdd}\t{"log":"%enc{%msg}{JSON}"}%n</Property>
     </Properties>
 
     <appenders>
@@ -23,11 +24,23 @@
             <PatternLayout pattern="${pattern2}"/>
             <SizeBasedTriggeringPolicy size="5 MB"/>
         </RollingFile>
+
+        <Kafka name="KAFKA_APPENDER" topic="hdp_ubu_xxzl_sec_sast_interapp_temp" syncSend="false">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            <PatternLayout>
+                <Pattern>${kafkaPattern}</Pattern>
+            </PatternLayout>
+            <Property name="bootstrap.servers">kafka-sec1.58dns.org:9092,kafka-sec2.58dns.org:9092,kafka-sec3.58dns.org:9092,kafka-sec4.58dns.org:9092,kafka-sec5.58dns.org:9092</Property>
+            <Property name="client.id">hdp_ubu_xxzl-hdp_ubu_xxzl_sec_sast_interapp_temp-uaL3N</Property>
+        </Kafka>
     </appenders>
     <loggers>
-        <root level="debug">
+        <root level="info">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFile"/>
+            <appender-ref ref="KAFKA_APPENDER"/>
         </root>
     </loggers>
 </configuration>
