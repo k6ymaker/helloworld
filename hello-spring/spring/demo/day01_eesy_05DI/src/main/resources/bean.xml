@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--spring中的依赖注入
+        依赖注入:
+            Dependency Injection
+        IOC(Inversion of Control)的作用：
+            降低程序间的耦合（依赖关系）
+        依赖关系的管理：
+            以后都交给了spring维护
+        在当前类需要用到其他类的对象，由spring为我们提供，我们只需要在配置文件中说明
+        依赖关系的维护：
+            就称为依赖注入
+        依赖注入：
+            能注入的数据：有三类
+                 其他的类型和String
+                 其他bean类型（在配置文件中或者注解配置过的bean）
+                 复杂类型/集合类型
+            注入的方式：有三种
+                第一种：使用构造函数提供
+                第二种：使用set方法提供
+                第三种：使用注解提供
+    -->
+    <!--1.构造函数注入:
+        使用标签:<constructor-arg></constructor-arg>
+        标签出现的位置:bean标签的内部
+        标签中的属性:
+            type:用于指定要注入的数据的数据类型，该数据类型也是构造函数中某个或某些参数的类型。
+            index:用于执行要注入的数据给构造函数中指定索引位置的参数赋值。参数索引从0开始
+            name:用于指定给构造函数中指定名称的参数赋值。
+            ====================以上三个用于指定给构造函数中哪个参数赋值====================================
+            value
+            ref  关联
+
+
+            优势：
+                在获取bean对象时，注入数据是必须的操作，否则对象无法创建成功。
+            弊端：
+                改变了bean对象的实例化方式，使我们在创建对象时，如果用不到这些数据，也必须提供
+
+    -->
+
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl">
+        <constructor-arg name="name" value="xiaoming"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="birthday" ref="now"></constructor-arg>
+    </bean>
+    <bean id="now" class="java.util.Date"></bean>
+    <!--2.set方法注入   更常用的方式
+        涉及的标签:<property></property>
+        出现的位置:bean标签的内部
+        标签的属性
+            name:用于指定注入时所调用的set方法名称。
+            value
+            ref  关联
+        优势：
+            创建对象时没有明确的限制，可以直接使用默认的构造函数
+        弊端:
+            如果有某个成员必须有值，则set方法无法保证一定注入，有可能无法执行
+    -->
+    <bean id="accountService2" class="com.itheima.service.impl.AccountServiceImpl2">
+        <property name="name" value="TEST"></property>
+        <property name="age" value="18"></property>
+        <property name="birthday" ref="now"></property>
+    </bean>
+
+    <!--复杂类型的注入/集合类型的注入-->
+    <bean id="accountService3" class="com.itheima.service.impl.AccountServiceImpl3">
+        <property name="myStrs">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+    </bean>
+</beans>

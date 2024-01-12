@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+     <!--配置spring的Ioc，把service对象配置进来-->
+    <bean id="accountService" class="com.itheima.service.impl.AccountServiceImpl"></bean>
+
+    <!--配置Logger类-->
+    <bean id="logger" class="com.itheima.service.utils.Logger"></bean>
+
+    <!--配置AOP-->
+    <aop:config>
+        <!--配置切入点表达式 id属性用于指定表达式的唯一标识。expression属性用于指定表达式内容
+        此标签写在aop:aspect标签内部只能当前切面使用。
+        它还可以写在aop:aspect外面，此时变成了所有切面可用,但必须在切面之前
+        -->
+        <aop:pointcut id="pt1" expression="execution(* *..*.*(..))"></aop:pointcut>
+        <!--配置切面-->
+        <aop:aspect id="logAdvice" ref="logger">
+            <!--配置前置通知，执行事务之前-->
+<!--            <aop:before method="beforePrintLog" pointcut-ref="pt1"></aop:before>-->
+
+            <!--配置后置通知，正常执行事务之后。它与异常通知只能执行一个-->
+<!--            <aop:after-returning method="afterReturningPrintLog" pointcut-ref="pt1"></aop:after-returning>-->
+
+            <!--配置异常通知，等同与catch部分。它与后置通知只能执行一个-->
+<!--            <aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="pt1"></aop:after-throwing>-->
+
+            <!--配置最终通知，等同于finally部分-->
+<!--            <aop:after method="afterPrintLog" pointcut-ref="pt1"></aop:after>-->
+
+
+            <!--配置环绕通知,详细的注释请看Logger类中-->
+            <aop:around method="aroundPrintLog" pointcut-ref="pt1"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>
